@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>Proect Euler resuelto</title>
+</head>
+<body>
+ <h1>Minimo como un multiplo</h1>
+ <p>Introduscaa los numeros del 1 al 20 separado por comas:</p>
+ <textarea id="numbersInput"></textarea>
+ <br>
+ <button onclick="button onclick()">El minimo comun multiplo es:</button>
+ <p id="result"></p>
+ <script>
+ function gcd(a, b) {
+ while (b !== 0) {
+ var temp = b;
+ b = a % b;
+ a = temp;
+ }
+ return a;
+ }
+function lcm(a, b) {
+ return (a * b) / gcd(a, b);
+ }
+ function leastCommonDivisor(numbers) {
+ var lcmValue = numbers[0];
+ for (var i = 1; i < numbers.length; i++) {
+ lcmValue = lcm(lcmValue, numbers[i]);
+ }
+ return lcmValue;
+ }
+ function findLeastCommonDivisor() {
+ var input = document.getElementById("numbersInput").value;
+ var numbers = input.split(",").map(function(item) {
+ return parseInt(item.trim(), 10);
+ });
+ if (numbers.length !== 20) {
+ alert("Please enter exactly 20 numbers separated by commas.");
+ return;
+ }
+ var result = leastCommonDivisor(numbers);
+ document.getElementById("result").innerHTML = "The least common divisor of the
+given numbers is: " + result;
+ }
+ </script>
+</body>
+</html>
